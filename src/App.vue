@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import buttons from "./components/buttons.vue";
+import Buttons from "./components/Buttons.vue";
 
 </script>
 
@@ -9,7 +9,7 @@ import buttons from "./components/buttons.vue";
     <h1>Compteur</h1>
 
     <div>
-        <buttons/>
+        <Buttons/>
     </div>
 
 </template>
