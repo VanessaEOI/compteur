@@ -1,6 +1,13 @@
 <script setup lang="ts">
 
-import ActionButtons from "./components/ActionButtons.vue";
+import ActionButton from "./components/ActionButton.vue";
+
+import { ref } from 'vue'
+
+const count = ref(0)
+function addOrSubstract(value) {
+    count.value += value
+}
 
 </script>
 
@@ -8,8 +15,13 @@ import ActionButtons from "./components/ActionButtons.vue";
 
     <h1>Compteur</h1>
 
+    <label count="count" >Le compteur affiche : {{ count }}</label>
+
     <div>
-        <ActionButtons/>
+        <ActionButton :value="-1" @add="addOrSubstract" />
+        <ActionButton :value="-5" @add="addOrSubstract" />
+        <ActionButton :value="1" @add="addOrSubstract" />
+        <ActionButton :value="5" @add="addOrSubstract" />
     </div>
 
 </template>
