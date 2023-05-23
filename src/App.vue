@@ -1,12 +1,19 @@
-<script setup lang="ts">
+<script lang="ts">
 
 import ActionButton from "./components/ActionButton.vue";
 
-import { ref } from 'vue'
-
-const count = ref(0)
-function addOrSubstract(value) {
-    count.value += value
+export default {
+    components: {ActionButton},
+    data() {
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        addOrSubstract(value) {
+            this.count += (value)
+        }
+    }
 }
 
 </script>

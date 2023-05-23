@@ -1,7 +1,10 @@
-<script setup lang="ts">
- defineProps<{
-      value: number,
-  }>()
+<script lang="ts">
+export default {
+    props: {
+        value: Number
+    },
+    emits: ['add']
+}
 </script>
 
 <template>
