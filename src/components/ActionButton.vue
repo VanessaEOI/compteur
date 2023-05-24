@@ -1,14 +1,20 @@
 <script lang="ts">
-export default {
+import {defineComponent, PropType} from "vue";
+
+export default defineComponent({
     props: {
-        value: Number
+        buttonValue: {
+            type : Number as PropType<number>,
+            required: true
+        }
     },
     emits: ['add']
-}
+})
+
 </script>
 
 <template>
-    <button @click="$emit('add', value)" >{{ value }}</button>
+    <button @click="$emit('add', buttonValue)" >{{ buttonValue }}</button>
 </template>
 
 <style scoped>

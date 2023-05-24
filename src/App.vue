@@ -1,20 +1,22 @@
 <script lang="ts">
 
-import ActionButton from "./components/ActionButton.vue";
+import ActionButton from "./components/ActionButton.vue"
+import {defineComponent, ref} from "vue"
 
-export default {
+
+export default defineComponent ({
     components: {ActionButton},
-    data() {
-        return {
-            count: 0
+    setup() {
+        const count = ref(0)
+        function addOrSubstract(buttonValue) {
+            count.value += buttonValue
         }
-    },
-    methods: {
-        addOrSubstract(value) {
-            this.count += (value)
+        return {
+            count,
+            addOrSubstract
         }
     }
-}
+})
 
 </script>
 
@@ -22,13 +24,13 @@ export default {
 
     <h1>Compteur</h1>
 
-    <label count="count" >Le compteur affiche : {{ count }}</label>
+    <label>Le compteur affiche : {{ count }}</label>
 
     <div>
-        <ActionButton :value="-1" @add="addOrSubstract" />
-        <ActionButton :value="-5" @add="addOrSubstract" />
-        <ActionButton :value="1" @add="addOrSubstract" />
-        <ActionButton :value="5" @add="addOrSubstract" />
+        <ActionButton :buttonValue="-5" @add="addOrSubstract" />
+        <ActionButton :buttonValue="-1" @add="addOrSubstract" />
+        <ActionButton :buttonValue="1" @add="addOrSubstract" />
+        <ActionButton :buttonValue="5" @add="addOrSubstract" />
     </div>
 
 </template>
