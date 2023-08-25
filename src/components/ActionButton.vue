@@ -1,11 +1,11 @@
 <script setup lang="ts">
  defineProps<{
-      value: number,
+      valueButton: Number,
   }>()
 </script>
 
 <template>
-    <button @click="$emit('add', value)" >{{ value }}</button>
+    <button @click="$emit('add', valueButton)" >{{ valueButton }}</button>
 </template>
 
 <style scoped>

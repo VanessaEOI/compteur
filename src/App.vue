@@ -5,9 +5,16 @@ import ActionButton from "./components/ActionButton.vue";
 import { ref } from 'vue'
 
 const count = ref(0)
-function addOrSubstract(value) {
-    count.value += value
+function addOrSubstract(valueButton) {
+    count.value += valueButton
 }
+
+const dataButtons = ref([
+  { id: 1, label: '-1', value: -1 },
+  { id: 2, label: '-5', value: -5 },
+  { id: 3, label: '+ 1', value: 1 },
+  { id: 4, label: '+ 5', value: 5 },
+])
 
 </script>
 
@@ -15,13 +22,10 @@ function addOrSubstract(value) {
 
     <h1>Compteur</h1>
 
-    <label count="count" >Le compteur affiche : {{ count }}</label>
+    <label>Le compteur affiche : {{ count }}</label>
 
     <div>
-        <ActionButton :value="-1" @add="addOrSubstract" />
-        <ActionButton :value="-5" @add="addOrSubstract" />
-        <ActionButton :value="1" @add="addOrSubstract" />
-        <ActionButton :value="5" @add="addOrSubstract" />
+        <ActionButton v-for="databutton in dataButtons" :key="databutton.id" :valueButton="databutton.value" @add="addOrSubstract" />
     </div>
 
 </template>
