@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {useStorage} from "@vueuse/core";
+
 const props = defineProps<{
   modelValue: Number,
   valueButton: Number
@@ -7,7 +9,7 @@ const emits = defineEmits(['update:modelValue'])
 
 function addOrSubstract() {
   const newValue = props.modelValue + props.valueButton;
-  localStorage.setItem('count', newValue.toString());
+  useStorage('count', newValue);
   emits('update:modelValue', newValue);
 }
 </script>
