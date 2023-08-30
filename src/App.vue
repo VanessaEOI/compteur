@@ -2,20 +2,10 @@
 
 import ActionButton from "./components/ActionButton.vue";
 import {ref} from 'vue'
-import {useRefHistory, useStorage, useTemplateRefsList} from "@vueuse/core";
-import {nextTick, watch} from "@vue/runtime-core";
+import {useRefHistory, useStorage} from "@vueuse/core";
 
 const count = ref(0)
-const refs = useTemplateRefsList<HTMLDivElement>()
-const { history, undo, redo, canUndo, canRedo } = useRefHistory(count, { capacity: 10 })
-
-watch(refs, async () => {
-  await nextTick()
-  console.log([...refs["value"]])
-}, {
-  deep: true,
-  flush: 'post',
-})
+const {history, undo, redo, canUndo, canRedo} = useRefHistory(count, {capacity: 10})
 
 useStorage('count', count)
 
@@ -30,11 +20,13 @@ const dataButtons = ref([
 
 <template>
 
-  <h1>Compteur</h1>
-
+<header flex-row>
+  <h1 text-pink-600 uppercase text-8xl >Compteur</h1>
   <label>Le compteur affiche : {{ count }}</label>
+</header>
 
-  <div>
+<main flex-row>
+  <div flex>
     <ActionButton v-for="dataButton in dataButtons"
                   :value-button="dataButton.value"
                   :key="dataButton.id"
@@ -45,9 +37,10 @@ const dataButtons = ref([
     <button :disabled="!canRedo" @click="redo()">Redo</button>
   </div>
 
-  <div v-for="i in history" :key="i.timestamp">
-    <span>Valeur du compteur : {{ i.snapshot }} </span>
-  </div>
+  <ul v-for="i in history" :key="i">
+    <li>Valeur du compteur : {{ i.snapshot }}</li>
+  </ul>
+</main>
 
 </template>
 
