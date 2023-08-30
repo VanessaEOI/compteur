@@ -1,17 +1,19 @@
 <script setup lang="ts">
- const props = defineProps<{
-   modelValue: Number,
-   valueButton: Number
-  }>()
- const emits = defineEmits(['update:modelValue'])
+const props = defineProps<{
+  modelValue: Number,
+  valueButton: Number
+}>()
+const emits = defineEmits(['update:modelValue'])
 
- function addOrSubstract() {
-   emits('update:modelValue', props.modelValue + props.valueButton)
- }
+function addOrSubstract() {
+  const newValue = props.modelValue + props.valueButton;
+  localStorage.setItem('count', newValue.toString());
+  emits('update:modelValue', newValue);
+}
 </script>
 
 <template>
-    <button @click="addOrSubstract" >{{ valueButton }}</button>
+  <button @click="addOrSubstract">{{ valueButton }}</button>
 </template>
 
 <style scoped>

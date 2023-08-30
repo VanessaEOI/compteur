@@ -3,8 +3,21 @@
 import ActionButton from "./components/ActionButton.vue";
 
 import {ref} from 'vue'
+import {onMounted} from "@vue/runtime-core";
+
 
 const count = ref(0)
+
+onMounted(() => {
+  getCount()
+})
+
+function getCount() {
+  let storedCount = localStorage.getItem('count');
+  if (storedCount !== null) {
+    count.value = parseInt(storedCount);
+  }
+}
 
 const dataButtons = ref([
   {id: 1, label: '-1', value: -1},
