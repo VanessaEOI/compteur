@@ -25,8 +25,8 @@ const dataButtons = ref([
   <label>Le compteur affiche : {{ count }}</label>
 </header>
 
-<main flex-row>
-  <div flex>
+<main>
+  <div>
     <ActionButton v-for="dataButton in dataButtons"
                   :value-button="dataButton.value"
                   :key="dataButton.id"
