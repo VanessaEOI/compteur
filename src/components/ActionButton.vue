@@ -9,7 +9,6 @@ const emits = defineEmits(['update:modelValue'])
 
 function addOrSubstract() {
   const newValue = props.modelValue + props.valueButton;
-  useStorage('count', newValue);
   emits('update:modelValue', newValue);
 }
 </script>

@@ -1,21 +1,18 @@
 <script setup lang="ts">
 
 import ActionButton from "./components/ActionButton.vue";
-import {ref} from 'vue'
+
 import {useRefHistory, useStorage} from "@vueuse/core";
 
-const count = ref(0)
+const count = useStorage('count', 0)
 const {history, undo, redo, canUndo, canRedo} = useRefHistory(count, {capacity: 10})
 
-useStorage('count', count)
-
-const dataButtons = ref([
+const dataButtons = [
   {id: 1, label: '-1', value: -1},
   {id: 2, label: '-5', value: -5},
   {id: 3, label: '+ 1', value: 1},
   {id: 4, label: '+ 5', value: 5},
-])
-
+]
 </script>
 
 <template>
