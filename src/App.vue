@@ -18,7 +18,6 @@ const dataButtons = [
   {id: 6, label: '+ 100', value: 100},
 ]
 
-
 const urlSrcImg = computed(() => `https://http.cat/images/${count.value}.jpg`)
 
 function clearCounter() {
